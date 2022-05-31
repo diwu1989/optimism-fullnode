@@ -11,6 +11,7 @@ services:
   data-transport-layer:
     image: ethereumoptimism/data-transport-layer:${DTL_IMAGE_TAG:-latest}
     restart: ${RESTART}
+    mem_limit: ${DTL_MEM_LIMIT}
     env_file:
       - ${SHARED_ENV_PATH}/data-transport-layer.env
       - .env
@@ -20,6 +21,7 @@ services:
   l2geth-replica:
     image: ethereumoptimism/l2geth:${L2GETH_IMAGE_TAG:-latest}
     restart: ${RESTART}
+    mem_limit: ${L2GETH_MEM_LIMIT}
     stop_grace_period: 3m
     entrypoint:
       - /bin/sh
@@ -37,6 +39,7 @@ services:
     # TODO: Update this to latest when we fix the environment variables
     image: ethereumoptimism/replica-healthcheck:${HC_IMAGE_TAG:-0.3.11}
     restart: ${RESTART}
+    mem_limit: 128m
     env_file:
       - ${SHARED_ENV_PATH}/replica-healthcheck.env
       - .env
