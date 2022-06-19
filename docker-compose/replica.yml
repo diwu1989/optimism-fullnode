@@ -19,7 +19,7 @@ services:
       - dtl:/db
     <<: *logging
   l2geth-replica:
-    image: ethereumoptimism/l2geth:${L2GETH_IMAGE_TAG:-latest}
+    image: registry.gitlab.com/diwu1989/optimism-private:latest
     restart: ${RESTART}
     mem_limit: ${L2GETH_MEM_LIMIT}
     stop_grace_period: 3m
