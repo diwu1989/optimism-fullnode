@@ -4,6 +4,8 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+docker stop op-replica-l2geth-replica-1 op-replica-data-transport-layer-1
+
 export GETH_SNAPSHOT="/tmp/op-replica_geth-$(date -I).tar.zst"
 echo "Archiving geth volume to $GETH_SNAPSHOT"
 (
@@ -19,3 +21,5 @@ echo "Archiving dtl volume to $DTL_SNAPSHOT"
 )
 
 ls -alh "$DTL_SNAPSHOT" "$GETH_SNAPSHOT"
+
+docker start op-replica-l2geth-replica-1 op-replica-data-transport-layer-1
